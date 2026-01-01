@@ -1,28 +1,26 @@
-const { bot, setAfk, lang } = require('../lib/')
 
-bot(
-  {
-    pattern: 'afk ?(.*)',
-    desc: lang.plugins.afk.desc,
-    type: 'misc',
-  },
-  async (message, match, ctx) => {
-    if (match === 'off') {
-      setAfk(false, '', 0, '', message.id)
-      return message.send(lang.plugins.afk.not_afk, { quoted: message.data }, 'text', ctx.p)
-    }
 
-    if (!ctx.isAfk && !match) {
-      return message.send(lang.plugins.afk.example)
-    }
+// ============================================
+// FILE: plugins/afk.js
+// ============================================
+const { getDB } = require('../lib/database');
 
-    if (!ctx.isAfk) {
-      ctx.reason = match || ''
-      ctx.isAfk = true
-      const now = Date.now() / 1000
-      setAfk(true, match, now, message.participant, message.id)
-
-      return message.send(match.replace('#lastseen', now))
-    }
+module.exports = {
+  pattern: 'afk',
+  desc: 'Set AFK status',
+  execute: async (ctx) => {
+    const { sender, args, reply } = ctx;
+    const db = getDB();
+    
+    const reason = args.join(' ') || 'No reason';
+    
+    db.run('INSERT OR REPLACE INTO users (jid, afk, afk_reason) VALUES (?, 1, ?)',
+      [sender, reason], (err) => {
+        if (err) {
+          reply('❌ Error setting AFK status!');
+        } else {
+          reply(`✅ AFK mode activated!\nReason: ${reason}`);
+        }
+      });
   }
-)
+};

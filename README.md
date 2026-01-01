@@ -1,143 +1,389 @@
-# WhatsApp MD User Bot
+# 🤖 Levanter-X Bot
 
-A powerful and feature-rich WhatsApp bot supporting multiple sessions, designed for seamless automation and enhanced user experience.
+<div align="center">
 
-### Features
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
 
-- **Multi-Session Support** – Manage multiple accounts effortlessly.
-- **Customizable Responses** – Configure responses in different languages.
-- **Automated Task Execution** – Perform actions without manual intervention.
-- **Easy Deployment** – Multiple hosting options for quick setup.
+**Enhanced WhatsApp Bot with Advanced Group Management & Pairing Code System**
 
-### Supported Languages
+</div>
 
-This bot supports multiple languages for responses. Set your preferred language using the `BOT_LANG` variable in the `config.env` file.
+## ✨ Features
 
-**Available languages:**
+### 🎯 Core Features
+- ✅ **Pairing Code System** - Easy setup with phone number pairing
+- 🌐 **Web Dashboard** - Beautiful web interface to display pairing code
+- 🔐 **Secure Authentication** - Multi-file auth state management
+- ⚡ **Fast & Efficient** - Built on Baileys (WhatsApp Web API)
+- 📱 **Multi-Mode** - Public, Private, or Group-only modes
 
-- **bn** – Bengali  
-- **en** – English  
-- **es** – Spanish  
-- **hi** – Hindi  
-- **id** – Indonesian  
-- **ur** – Urdu  
-- **tr** – Turkish  
-- **fr** – French  
-- **ru** – Russian  
-- **ar** – Arabic  
+### 👥 Group Management
+- **Add/Remove Members** - Manage group participants
+- **Promote/Demote** - Admin management
+- **Group Settings** - Lock/unlock, mute/unmute groups
+- **Anti-Link Protection** - Auto-delete WhatsApp group links
+- **Welcome/Goodbye Messages** - Greet new members and say goodbye
+- **Tag All** - Mention all group members
+- **Hide Tag** - Send hidden tagged messages
+- **Warning System** - Warn users (auto-kick after 3 warnings)
+- **Group Info** - Detailed group information
+- **Admin List** - List all group admins
+- **Set Description** - Change group description
+- **Set Name** - Change group name
 
-To set the bot language to Spanish, add the following line to your `config.env` file:
+### 🛠️ Utility Commands
+- **Sticker Maker** - Create stickers from images/videos
+- **AFK Mode** - Set away from keyboard status
+- **Delete Messages** - Delete bot messages
+- **Ping** - Check bot response time
+- **Alive** - Bot status and uptime
+- **Menu** - Command list with categories
+- **Broadcast** - Send messages to all groups (owner only)
+
+### 🎮 Additional Features
+- Auto-read messages
+- Auto-view status
+- Auto-typing indicator
+- Database support (SQLite)
+- Custom prefix
+- Multi-admin support (SUDO)
+- Ban system
+
+## 📋 Prerequisites
+
+- Node.js (v18 or higher)
+- Git
+- WhatsApp account
+- Basic terminal knowledge
+
+## 🚀 Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/levanter-x-bot.git
+cd levanter-x-bot
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment
+
+Create a `.env` file in the root directory:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your details:
 
 ```env
-BOT_LANG=es
+# Bot Configuration
+SESSION_ID=
+PREFIX=.
+BOT_NAME=Levanter-X
+OWNER_NUMBER=1234567890  # Your WhatsApp number (without +)
+OWNER_NAME=Your Name
+
+# Group Features
+ANTILINK=false
+WELCOME=true
+GOODBYE=true
+
+# Auto Features
+AUTO_READ=false
+AUTO_STATUS_VIEW=false
+
+# Bot Mode (public/private/group)
+MODE=public
+
+# Server Port
+PORT=3000
+
+# Admin Numbers (comma separated, without +)
+SUDO=1234567890,9876543210
+
+# Timezone
+TIMEZONE=Africa/Lagos
 ```
----
 
-### Deployment Guide
+### 4. Start the Bot
 
-### 1️⃣ Deploy on Koyeb
-
-[Deploy Now](https://levanter-delta.vercel.app/) to set up your bot on Koyeb.
-
-### 2️⃣ Deploy on Render
-
-[Deploy Now](https://levanter-delta.vercel.app/) to set up your bot on Render.
-
-### 3️⃣ Deploy on a VPS or PC (Ubuntu Example)
-
-#### **Quick Installation**
-
-Run the following command:
-
-```sh
-bash <(curl -fsSL http://bit.ly/43JqREw)
+```bash
+npm start
 ```
 
-#### **Manual Installation**
+### 5. Pair Your WhatsApp
 
-1. **Update System and Install Dependencies:**
+1. Open your browser and go to `http://localhost:3000`
+2. You'll see a pairing code displayed
+3. Open WhatsApp on your phone
+4. Go to **Settings → Linked Devices**
+5. Tap **Link a Device**
+6. Select **Link with phone number instead**
+7. Enter the pairing code from the webpage
 
-   ```sh
-   sudo apt update && sudo apt upgrade -y
-   sudo apt install git ffmpeg curl -y
-   ```
+## 📁 Project Structure
 
-2. **Install Node.js (Version 20.x Recommended):**
+```
+levanter-x-bot/
+├── index.js              # Main bot file
+├── config.js             # Configuration
+├── server.js             # Web server for pairing
+├── lib/
+│   ├── database.js       # Database functions
+│   ├── message.js        # Message handler
+│   └── plugins.js        # Plugin loader
+├── plugins/
+│   ├── group.js          # Group management
+│   ├── antilink.js       # Anti-link protection
+│   ├── tagall.js         # Tag all members
+│   ├── hidetag.js        # Hidden tags
+│   ├── warn.js           # Warning system
+│   ├── groupinfo.js      # Group information
+│   ├── admins.js         # Admin list
+│   ├── setdesc.js        # Set description
+│   ├── setname.js        # Set group name
+│   ├── sticker.js        # Sticker maker
+│   ├── afk.js            # AFK mode
+│   ├── alive.js          # Status check
+│   ├── menu.js           # Command menu
+│   ├── delete.js         # Delete messages
+│   ├── ping.js           # Ping command
+│   └── broadcast.js      # Broadcast messages
+├── auth/                 # Authentication data
+├── database.db           # SQLite database
+├── package.json          # Dependencies
+├── .env                  # Environment variables
+└── README.md            # Documentation
+```
 
-   ```sh
-   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-   sudo apt install nodejs -y
-   ```
+## 📖 Commands
 
-3. **Install Yarn and PM2 for Process Management:**
+### Group Management Commands (Admin Only)
 
-   ```sh
-   sudo npm install -g yarn
-   yarn global add pm2
-   ```
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.add` | Add member to group | `.add @user` or `.add 1234567890` |
+| `.kick` | Remove member from group | `.kick @user` |
+| `.promote` | Promote member to admin | `.promote @user` |
+| `.demote` | Demote admin to member | `.demote @user` |
+| `.mute` | Close group (only admins can send) | `.mute` |
+| `.unmute` | Open group (everyone can send) | `.unmute` |
+| `.tagall` | Tag all members | `.tagall message` |
+| `.hidetag` | Send hidden tagged message | `.hidetag message` |
+| `.warn` | Warn a user | `.warn @user reason` |
+| `.resetwarn` | Reset user warnings | `.resetwarn @user` |
+| `.antilink on/off` | Toggle anti-link protection | `.antilink on` |
+| `.welcome on/off` | Toggle welcome messages | `.welcome on` |
+| `.goodbye on/off` | Toggle goodbye messages | `.goodbye on` |
+| `.setname` | Change group name | `.setname New Name` |
+| `.setdesc` | Change group description | `.setdesc New Description` |
 
-4. **Clone the Repository and Install Dependencies:**
+### Group Info Commands
 
-   ```sh
-   git clone https://github.com/lyfe00011/levanter botName
-   cd botName
-   yarn install
-   ```
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.groupinfo` | Get group information | `.groupinfo` |
+| `.admins` | List all group admins | `.admins` |
 
-5. **Configure Environment Variables:**
+### Utility Commands
 
-   Create a `config.env` file and add the following lines:
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.menu` | Show all commands | `.menu` |
+| `.alive` | Check bot status | `.alive` |
+| `.ping` | Check response time | `.ping` |
+| `.sticker` | Create sticker | Reply to image/video with `.sticker` |
+| `.afk` | Set AFK status | `.afk reason` |
+| `.delete` | Delete bot message | Reply to bot message with `.delete` |
 
-   ```sh
-   SESSION_ID=your_session_id_here
-   PREFIX=.
-   STICKER_PACKNAME=LyFE
-   ALWAYS_ONLINE=false
-   RMBG_KEY=null
-   LANGUAG=en
-   BOT_LANG=en
-   WARN_LIMIT=3
-   FORCE_LOGOUT=false
-   BRAINSHOP=159501,6pq8dPiYt7PdqHz3
-   MAX_UPLOAD=200
-   REJECT_CALL=false
-   SUDO=989876543210
-   TZ=Asia/Kolkata
-   VPS=true
-   AUTO_STATUS_VIEW=true
-   SEND_READ=true
-   AJOIN=true
-   DISABLE_START_MESSAGE=false
-   PERSONAL_MESSAGE=null
-   ```
+### Owner Commands
 
-6. **Start the Bot Using PM2:**
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.broadcast` | Broadcast to all groups | `.broadcast message` |
 
-   To start the bot, run:
+## 🔧 Configuration Options
 
-   ```sh
-   pm2 start . --name botName --attach --time
-   ```
+### Bot Modes
 
-   To stop the bot, run:
+- **`public`** - Anyone can use the bot
+- **`private`** - Only owner and SUDO users can use
+- **`group`** - Bot only works in groups
 
-   ```sh
-   pm2 stop botName
-   ```
+### Anti-Link Actions
+
+- **`kick`** - Remove user who sends group link
+- **`warn`** - Warn user who sends group link
+- **`delete`** - Only delete the message
+
+### Auto Features
+
+- **`AUTO_READ`** - Auto-read all messages
+- **`AUTO_STATUS_VIEW`** - Auto-view WhatsApp statuses
+- **`AUTO_TYPING`** - Show typing indicator
+- **`AUTO_RECORDING`** - Show recording indicator
+
+## 🌐 Deployment
+
+### Deploy to Heroku
+
+1. Create a Heroku account
+2. Install Heroku CLI
+3. Login to Heroku:
+```bash
+heroku login
+```
+
+4. Create new app:
+```bash
+heroku create your-bot-name
+```
+
+5. Set environment variables:
+```bash
+heroku config:set OWNER_NUMBER=1234567890
+heroku config:set PREFIX=.
+# Add other variables
+```
+
+6. Deploy:
+```bash
+git push heroku main
+```
+
+### Deploy to Railway
+
+1. Go to [Railway.app](https://railway.app)
+2. Click "New Project"
+3. Select "Deploy from GitHub repo"
+4. Connect your repository
+5. Add environment variables in settings
+6. Deploy!
+
+### Deploy to Render
+
+1. Go to [Render.com](https://render.com)
+2. Create new "Web Service"
+3. Connect your repository
+4. Set environment variables
+5. Deploy!
+
+## 🛡️ Security Tips
+
+1. **Never share your `.env` file**
+2. **Add `.env` to `.gitignore`**
+3. **Use strong admin passwords**
+4. **Regularly update dependencies**
+5. **Monitor bot logs for suspicious activity**
+6. **Use SUDO feature carefully**
+
+## 🐛 Troubleshooting
+
+### Bot not connecting?
+- Check your internet connection
+- Verify OWNER_NUMBER is correct (no + sign)
+- Delete `auth` folder and reconnect
+- Check Node.js version (≥18)
+
+### Commands not working?
+- Check if prefix is correct
+- Verify bot is admin (for admin commands)
+- Check bot mode in `.env`
+- Review logs for errors
+
+### Database errors?
+- Delete `database.db` and restart
+- Check file permissions
+- Verify SQLite is installed
+
+### Pairing code not showing?
+- Check PORT is not in use
+- Verify OWNER_NUMBER is correct
+- Check firewall settings
+- Try different browser
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Creating Custom Plugins
+
+Create a new file in `plugins/` folder:
+
+```javascript
+// plugins/mycommand.js
+module.exports = {
+  pattern: 'mycommand',  // Command trigger
+  desc: 'My custom command',  // Description
+  isGroup: false,  // Requires group? (optional)
+  isAdmin: false,  // Requires admin? (optional)
+  botAdmin: false,  // Bot needs admin? (optional)
+  execute: async (ctx) => {
+    const { reply, args, sender, pushname } = ctx;
+    
+    // Your command logic here
+    reply(`Hello ${pushname}! Args: ${args.join(' ')}`);
+  }
+};
+```
+
+### Available Context Properties
+
+- `sock` - WhatsApp socket connection
+- `msg` - Original message object
+- `from` - Chat ID
+- `sender` - Sender ID
+- `pushname` - Sender name
+- `text` - Full message text
+- `args` - Command arguments array
+- `command` - Command name
+- `isGroup` - Is group chat?
+- `reply(text)` - Reply to message
+- `replyWithMention(text, mentions)` - Reply with mentions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Baileys](https://github.com/WhiskeySockets/Baileys) - WhatsApp Web API
+- [Levanter](https://github.com/lyfe00011/levanter) - Original bot inspiration
+- All contributors and supporters
+
+## 💬 Support
+
+- **Issues**: [GitHub Issues](https://github.com/yourusername/levanter-x-bot/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/levanter-x-bot/discussions)
+- **WhatsApp**: Contact bot owner
+
+## 📊 Status
+
+- ✅ Active Development
+- 🔄 Regular Updates
+- 🐛 Bug Fixes
+- ✨ New Features
+
 ---
 
-### Credits & Acknowledgments
+<div align="center">
 
-A special thanks to:
+**Made with ❤️ by [Your Name]**
 
-- **[Yusuf Usta](https://github.com/Quiec)** – Creator of [WhatsAsena](https://github.com/yusufusta/WhatsAsena).  
-- **[@adiwajshing](https://github.com/adiwajshing)** – Developer of [Baileys](https://github.com/adiwajshing/Baileys).
+⭐ Star this repo if you find it helpful!
 
----
-
-## 🛠 Need Help?
-
-For more information on setting up environment variables and FAQs, please visit:
-
-- [Bot Environment Variables](https://levanter-delta.vercel.app/)  
-- [Frequently Asked Questions](https://levanter-delta.vercel.app/)
+</div>

@@ -367,8 +367,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 💬 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/levanter-x-bot/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/levanter-x-bot/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Jatingehlot/0xs/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Jatingehlot/0xs/discussions)
 - **WhatsApp**: Contact bot owner
 
 ## 📊 Status
@@ -382,7 +382,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Jatin Gehlot**
 
 ⭐ Star this repo if you find it helpful!
 

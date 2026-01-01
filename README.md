@@ -1,4 +1,4 @@
-# 🤖 Levanter-X Bot
+# 🤖 0xS Bot
 
 <div align="center">
 
